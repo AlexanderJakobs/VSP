@@ -1,46 +1,77 @@
-Thema: Abfahrten in der Nähe
-Idee: Ein System, das im Hamburger Nahverkehr anzeigt, welche Busse oder Bahnen in der Nähe abfahren.
-externer  API (HVV Open Data),
-Backend-Logik, die Daten verarbeitet,
-Potenzial für Verteilung auf mehrere Rechner/Services
-evtl. einer Frontend-Komponente (z. B. ein Smart Display oder eine Webansicht)
-1. API-Anbindung an externen Dienst (GraphQL oder RESTful)
-Machbar mit HVV API
-Der Hamburger Verkehrsverbund (HVV) bietet eine REST-API über das HVV Open Data Portal oder Geofox API.
-Darüber kannst du Echtzeit-Abfahrten für eine Station oder geografische Koordinaten abfragen.
-2. Interne Kommunikation (ICC) über RPC
-Service
-Aufgabe
-Kommunikation
-A: Location Service
-Nimmt Koordinaten entgegen und sucht nächstgelegene Haltestellen
-gRPC-Call an Service B
-B: Departure Service
-Fragt über die HVV API die nächsten Abfahrten ab
-Antwort an A über gRPC
-C: Frontend/Display Service(optional)
-Zeigt Daten auf einem Gerät oder Web-Frontend an
-Fragt A über HTTP/gRPC an
+from pathlib import Path
 
-Damit nutzt du gRPC oder RMI intern → erfüllt das „Intern RPC“ Kriterium.
+# Inhalt der README.md im GitHub-Format
+readme_content = """# 🚏 Thema 1: Abfahrten in der Nähe
 
-3. Loadsharing
-mehrere Instanzen des Departure Service starten (z. B. in Docker),
-und sie über einen Load Balancer (z. B. NGINX, gRPC Load Balancing, oder einfache Round-Robin-Logik) verteilen.
-Skalierbarkeit vom System und Loadsharing nachweisen.
+## 💡 Idee  
+Ein System, das im **Hamburger Nahverkehr** anzeigt, welche **Busse oder Bahnen** in der Nähe abfahren.
 
-4. Service Orchestrierung über RPC
-Ein Service (z. B. „Coordinator“) ruft mehrere andere RPC-Services auf, um eine zusammengesetzte Antwort zu bilden.
-Beispiel:
-Der Orchestrator-Service bekommt vom Frontend den Standort.
-Er ruft:
-LocationService → findet Haltestellen,
-DepartureService → holt Abfahrten,
-evtl. AIService → berechnet Prognose (z. B. „Wie wahrscheinlich ist eine Verspätung?“),
-aggregiert die Ergebnisse und gibt sie zurück.
+### Komponenten:
+- Externe **API-Anbindung** (HVV Open Data)  
+- **Backend-Logik**, die Daten verarbeitet  
+- Potenzial für **Verteilung auf mehrere Rechner/Services**  
+- Optionale **Frontend-Komponente** (z. B. Smart Display oder Webansicht)
 
-5. Optionale AI-Komponente:
-Eine kleine Machine-Learning-Komponente, die aus historischen Daten oder Live-Feeds Verspätungen vorhersagt.
-Oder: Ein Recommendation-Service, der die beste Verbindung vorschlägt, abhängig von der Uhrzeit, Wetter o. ä.
-oder einfach gehalten:
-Ein „Pseudo-AI-Service“, der Regeln (Heuristiken) anwendet, z. B. „Bei Regen + Stoßzeit = +5 Minuten Verspätung“.
+---
+
+## ⚙️ 1. API-Anbindung an externen Dienst (GraphQL oder RESTful)
+
+Machbar mit der **HVV API**.  
+Der **Hamburger Verkehrsverbund (HVV)** bietet eine **REST-API** über das  
+[HVV Open Data Portal](https://www.hvv.de/de/fahrplaene/open-data) oder die **Geofox API**.
+
+Über diese Schnittstelle können **Echtzeit-Abfahrten** für eine Station oder geografische Koordinaten abgefragt werden.
+
+---
+
+## 🔗 2. Interne Kommunikation (ICC) über RPC
+
+### Übersicht der Services
+
+| Service | Aufgabe | Kommunikation |
+|----------|----------|----------------|
+| **A: Location Service** | Nimmt Koordinaten entgegen und sucht nächstgelegene Haltestellen | gRPC-Call an Service B |
+| **B: Departure Service** | Fragt über die HVV API die nächsten Abfahrten ab | Antwort an A über gRPC |
+| **C: Frontend/Display Service (optional)** | Zeigt Daten auf einem Gerät oder im Web-Frontend an | Fragt A über HTTP/gRPC an |
+
+➡️ Damit nutzt das System **gRPC oder RMI intern** und erfüllt das Kriterium *„Internal RPC“*.
+
+---
+
+## ⚖️ 3. Loadsharing
+
+- Mehrere **Instanzen des Departure Service** starten (z. B. mit **Docker**).  
+- Verteilung über einen **Load Balancer**, z. B.:
+  - **NGINX**
+  - **gRPC Load Balancing**
+  - oder eine einfache **Round-Robin-Logik**
+
+📈 Ziel: **Skalierbarkeit** des Systems und **Loadsharing** nachweisen.
+
+---
+
+## 🧩 4. Service-Orchestrierung über RPC
+
+Ein spezieller **Coordinator/Orchestrator-Service** ruft mehrere andere RPC-Services auf, um eine **zusammengesetzte Antwort** zu bilden.
+
+### Beispiel:
+1. Das Frontend sendet den Standort an den Orchestrator.  
+2. Der Orchestrator ruft folgende Services auf:
+   - **LocationService** → findet Haltestellen  
+   - **DepartureService** → holt Abfahrten  
+   - **AIService (optional)** → berechnet Prognosen (z. B. Verspätungswahrscheinlichkeit)  
+3. Die Ergebnisse werden aggregiert und als **einheitliche Antwort** zurückgegeben.
+
+---
+
+## 🤖 5. Optionale AI-Komponente
+
+Eine kleine **Machine-Learning-Komponente**, die z. B. aus historischen Daten oder Live-Feeds **Verspätungen vorhersagt**.
+
+### Alternativ:
+Ein **Recommendation-Service**, der:
+- die **beste Verbindung** vorschlägt (z. B. abhängig von Uhrzeit, Wetter, Auslastung),
+- oder einfach als **Pseudo-AI-Service** Regeln anwendet, etwa:
+
+```text
+Wenn Regen + Stoßzeit → +5 Minuten Verspätung
