@@ -16,8 +16,7 @@ Ein System, das im **Hamburger Nahverkehr** anzeigt, welche **Busse oder Bahnen*
 ## ⚙️ 1. API-Anbindung an externen Dienst (GraphQL oder RESTful)
 
 Machbar mit der **HVV API**.  
-Der **Hamburger Verkehrsverbund (HVV)** bietet eine **REST-API** über das  
-[HVV Open Data Portal](https://www.hvv.de/de/fahrplaene/open-data) oder die **Geofox API**.
+Der **Hamburger Verkehrsverbund (HVV)** bietet eine **REST-API** über die **Geofox API**.
 
 Über diese Schnittstelle können **Echtzeit-Abfahrten** für eine Station oder geografische Koordinaten abgefragt werden.
 
