@@ -53,7 +53,7 @@
 | "Abfahrten in der Nähe"  |  Our System                                                                                                                              | 
 
 ### Technical view (application)
-![Bausteinsicht](/docs/arc42/images/Baustein_v2.0.jpg)
+![Bausteinsicht](/docs/arc42/images/Baustein_v2.0.png)
 
 | Element           | Description                                                                                                                  |
 |:------------------|:-----------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +62,7 @@
 | Geofox API        |  Passes coordinates to hvv System in JSON format                                                                                                                       | 
 
 ### Technical view (middleware)
-![Middleware architecture](/docs/arc42/images/Middleware.jpg)
+![Middleware architecture](/docs/arc42/images/Middleware.png)
 ## 4. Solution strategy
 
 | Name                     | Precondition                                | Postcondition                                | Parameter                          | Description                                                      |
