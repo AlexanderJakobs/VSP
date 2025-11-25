@@ -28,10 +28,10 @@
 
 ### Stakeholder
 
-| Role           | Name                                                                 | Expectations |
-|:---------------|:---------------------------------------------------------|:-------|
-| Developer      | Jakobs, Alexander<br>Agboola, Ibrahim<br>Ziegler, Luca<br>Wolpers, Raffael | • documentation matches code<br>• Java<br>• runnable from IDE<br>• English code |
-| Project Owner  | Becke, Martin                                                        | • An API connection with an external service (Extern GraphQL, RESTful)<br>and ICC (Intern RPC)<br>• Loadsharing<br>• Support a service orchestration with RPC<br>• measurable goals |
+| Role           | Name                                                               | Expectations |
+|:---------------|:-------------------------------------------------------------------|:-------|
+| Developer      | Jakobs Alexander, Agboola Ibrahim<br>Ziegler Luca, Wolpers Raffael | • documentation matches code<br>• Java<br>• runnable from IDE<br>• English code |
+| Project Owner  | Becke, Martin                                                      | • An API connection with an external service (Extern GraphQL, RESTful)<br>and ICC (Intern RPC)<br>• Loadsharing<br>• Support a service orchestration with RPC<br>• measurable goals |
 
 ## 2. Constraints
 - Data is only relevant for Hamburg, Germany, and dependent <br>on the HVV (Hamburg public transport system)
@@ -42,3 +42,43 @@
 - 1 request/second to HVV and nomination
 
 ## 3. Context & Scope
+### Business view
+![Kontextsicht](/docs/arc42/images/Kontextsicht.jpg)
+
+| Element                  | Description                                                                                                                  |
+|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| User                     | Gives his position (Streetname and number)                                                                                   |
+| hvv                      | Station data provider                                                                                                        |
+| Locationconverter        | An external provider, which handles the positioning for us. <br>It should provide us with coordinates/position for the user. |
+| "Abfahrten in der Nähe"  |  Our System                                                                                                                              | 
+
+### Technical view (application)
+![Bausteinsicht](/docs/arc42/images/Baustein_v2.0.jpg)
+
+| Element           | Description                                                                                                                  |
+|:------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| hvv               | Gives us actuall data in JSON format                                                                                                     |
+| Locationconverter | Receives location from our system and returns coordinated  |
+| Geofox API        |  Passes coordinates to hvv System in JSON format                                                                                                                       | 
+
+### Technical view (middleware)
+![Middleware architecture](/docs/arc42/images/Middleware.jpg)
+## 4. Solution strategy
+
+| Name                     | Precondition                                | Postcondition                                | Parameter                          | Description                                                      |
+|--------------------------|---------------------------------------------|---------------------------------------------|-----------------------------------|-----------------------------------------------------------------|
+| `UserPassLocation`       | No location in system                      | Location object                             | String Street, String housenumber | User passes his starting position as street name and number    |
+| `getCoordinates`          | Location object has one attribute text     | We get the coordinates X and Y back         | String address                    | Pass address to external system to get corresponding coordinates|
+| `addCoordinatesToLocation` | Location object without attribute coordinates| Location object has coordinates as attributes| String X, String Y               | Location receives coordinated attributes                        |
+| `getDepartures`          | Location is ready but no departures        | We get JSON with departures from our location| Location                          | Get departure data from data supplier                          |
+| `showDepartures`         | Departures have not been shown             | Departures are being shown to a user        | Departure                         | Data of nearest departures is being shown                      |
+| `statusUpdate`           | --                                         | Timestamp being shown to user               | --                                | System shows when the last connection to the data supplier was |
+
+### Technical decisions
+**Implementation in Java**, because nothing stands against it and the developer team prefer the language
+
+**GitHub**, it is preferred by some team members (more stable than git.haw)
+
+**Kanban**, for a good overview of the progress and for the documentation so it is all in one place. It is recommended by the German Innenministerium (Orgahandbuch - Kanban).
+
+**Geolocation**, [Nominatim](https://nominatim.org/) -> openstreetmap -> 1 free use per second 
