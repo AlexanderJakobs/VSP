@@ -63,6 +63,9 @@
 
 ### Technical view (middleware)
 ![Middleware architecture](/docs/arc42/images/Middleware.png)
+
+### Sequenzdiagram
+![Sequenz](/docs/arc42/images/SequenzD_v1.0.png)
 ## 4. Solution strategy
 
 | Name                     | Precondition                                | Postcondition                                | Parameter                          | Description                                                      |
