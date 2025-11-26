@@ -39,7 +39,7 @@
 - Load sharing is supported
 - Service orchestration via RPC is supported
 - Geofox Thin interface, HTTP, JSON
-- 1 request/second to HVV and nomination
+- 1 request/second to HVV and Nominatim
 
 ## 3. Context & Scope
 ### Business view
