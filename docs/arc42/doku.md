@@ -82,3 +82,14 @@
 **Kanban**, for a good overview of the progress and for the documentation so it is all in one place. It is recommended by the German Innenministerium (Orgahandbuch - Kanban).
 
 **Geolocation**, [Nominatim](https://nominatim.org/) -> openstreetmap -> 1 free use per second 
+
+### Rollenaufteilung
+
+| Role                       | Name    |
+|----------------------------|---------|
+| Scrum master          | Raffael |
+| Responsible for Nominatim API Integration         | Raffael |
+| Responsible for HVV API Integration  | Sasha   |
+|Termin-manager (Protokollant)             | Sasha   |
+| Testmanager           | Ibrahim |
+| Backend Developer             | All     |
