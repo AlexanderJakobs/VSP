@@ -73,6 +73,9 @@ https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/
 #### Display Manager
 ![SequenzDM](/docs/arc42/images/SeqDisplayManager.drawio.png)
 
+#### Locationhandler
+![SequenzLh](/docs/arc42/images/SeqLocationhandler.drawio.png)
+
 #### Transportplan
 ![SequenzLh](/docs/arc42/images/SeqTransportplan.drawio.png)
 
