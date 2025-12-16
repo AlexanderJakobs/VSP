@@ -42,8 +42,7 @@
 - 1 request/second to HVV and Nominatim
 
 ## 3. Context & Scope
-### Business view
-![Kontextsicht](/docs/arc42/images/Kontextsicht.jpg)
+### Kontextsicht
 
 | Element                  | Description                                                                                                                  |
 |:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
@@ -52,20 +51,31 @@
 | Locationconverter        | An external provider, which handles the positioning for us. <br>It should provide us with coordinates/position for the user. |
 | "Abfahrten in der Nähe"  |  Our System                                                                                                                              | 
 
-### Technical view (application)
-![Bausteinsicht](/docs/arc42/images/Baustein_v2.0.png)
+### Technical context 
+![Techsicht](/docs/arc42/images/TechnicalContext.png)
 
-| Element           | Description                                                                                                                  |
-|:------------------|:-----------------------------------------------------------------------------------------------------------------------------|
-| hvv               | Gives us actuall data in JSON format                                                                                                     |
-| Locationconverter | Receives location from our system and returns coordinated  |
-| Geofox API        |  Passes coordinates to hvv System in JSON format                                                                                                                       | 
+| Node            | Communication      | Data format | Description                                                     |
+|-----------------|--------------------|-------------|-----------------------------------------------------------------|
+| JRE             | JDK 24             | --          | Runs the code of our system                                     |
+| Geofax API      | REST over HTTPS    | JSON        | Exchanges coordinated and departure plan with our system        |
+| Nominatim API   | REST over HTTPS    | JSON        | Returns us coordinates                                          |
+| GitHub          | HTTPS              | --          | Version control                                                 |
+
+
+### Bausteinsicht (application)
+![Bausteinsicht](/docs/arc42/images/Baustein_v3.1.png)
 
 ### Technical view (middleware)
-![Middleware architecture](/docs/arc42/images/Middleware.png)
+https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/edit?tab=t.0
 
-### Sequenzdiagram
-![Sequenz](/docs/arc42/images/SequenzD_v1.0.png)
+### Sequenzdiagramme:
+
+#### Display Manager
+![SequenzDM](/docs/arc42/images/SeqDisplayManager.drawio.png)
+
+#### Transportplan
+![SequenzLh](/docs/arc42/images/SeqTransportplan.drawio.png)
+
 ## 4. Solution strategy
 
 | Name                     | Precondition                                | Postcondition                                | Parameter                          | Description                                                      |
