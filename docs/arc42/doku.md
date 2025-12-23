@@ -1,5 +1,5 @@
 # Dokumentation vom Projekt<br>"Abfahrten in der Nähe"
-##### Raffael Wolpers, Ibrahim Agboola, Alexander Jakobs
+##### Raffael Wolpers, Ibrahim Agboola, Alexander Jakobs, Maja Trucks
 
 ## 1. Introduction & Goals
 - Location is either entered by the user or automatically retrieved from GPS
@@ -21,17 +21,17 @@
 | Cultural and Regional		| Multilanguage		|The user interface texts must be translatable into English<br> or German using a translation file that supports the ASCII character set  |
 
 ### Transparencies
-| **Transparency Type**| **Relevance** |
-|:------|:---------|
-| Acces | The user must be in the HVV region -> Show the user that the data is just for HVV-region    |
-| Error | The user should not notice that there is an error. -> Display time of the last data update 
+| **Transparency Type** | **Relevance**                                                                              |
+|:----------------------|:-------------------------------------------------------------------------------------------|
+| Acces                 | The user must be in the HVV region -> Show the user that the data is just for HVV-region   |
+| Error                 | The user should not notice that there is an error. -> Display time of the last data update |
 
 ### Stakeholder
 
-| Role           | Name                                                               | Expectations |
-|:---------------|:-------------------------------------------------------------------|:-------|
-| Developer      | Jakobs Alexander, Agboola Ibrahim<br>Ziegler Luca, Wolpers Raffael | • documentation matches code<br>• Java<br>• runnable from IDE<br>• English code |
-| Project Owner  | Becke, Martin                                                      | • An API connection with an external service (Extern GraphQL, RESTful)<br>and ICC (Intern RPC)<br>• Loadsharing<br>• Support a service orchestration with RPC<br>• measurable goals |
+| Role           | Name                                                                            | Expectations |
+|:---------------|:--------------------------------------------------------------------------------|:-------|
+| Developer      | Jakobs Alexander, Agboola Ibrahim<br>Ziegler Luca, Wolpers Raffael, Trucks Maja | • documentation matches code<br>• Java<br>• runnable from IDE<br>• English code |
+| Project Owner  | Becke, Martin                                                                   | • An API connection with an external service (Extern GraphQL, RESTful)<br>and ICC (Intern RPC)<br>• Loadsharing<br>• Support a service orchestration with RPC<br>• measurable goals |
 
 ## 2. Constraints
 - Data is only relevant for Hamburg, Germany, and dependent <br>on the HVV (Hamburg public transport system)
@@ -61,24 +61,6 @@
 | Nominatim API   | REST over HTTPS    | JSON        | Returns us coordinates                                          |
 | GitHub          | HTTPS              | --          | Version control                                                 |
 
-
-### Bausteinsicht (application)
-![Bausteinsicht](/docs/arc42/images/Baustein_v3.1.png)
-
-### Technical view (middleware)
-https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/edit?tab=t.0
-
-### Sequenzdiagramme:
-
-#### Display Manager
-![SequenzDM](/docs/arc42/images/SeqDisplayManager.drawio.png)
-
-#### Locationhandler
-![SequenzLh](/docs/arc42/images/SeqLocationhandler.drawio.png)
-
-#### Transportplan
-![SequenzLh](/docs/arc42/images/SeqTransportplan.drawio.png)
-
 ## 4. Solution strategy
 
 | Name                     | Precondition                                | Postcondition                                | Parameter                          | Description                                                      |
@@ -97,7 +79,7 @@ https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/
 
 **Kanban**, for a good overview of the progress and for the documentation so it is all in one place. It is recommended by the German Innenministerium (Orgahandbuch - Kanban).
 
-**Geolocation**, [Nominatim](https://nominatim.org/) -> openstreetmap -> 1 free use per second 
+**Geolocation**, [Nominatim](https://nominatim.org/) -> openstreetmap -> 1 free use per second
 
 ### Rollenaufteilung
 
@@ -109,3 +91,23 @@ https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/
 |Termin-manager (Protokollant)             | Sasha   |
 | Testmanager           | Ibrahim |
 | Backend Developer             | All     |
+
+## 5. Building block view
+### Application
+![Bausteinsicht](/docs/arc42/images/Baustein_v3.1.png)
+
+## 6. Runtime view
+### Sequence diagrams:
+
+#### Display Manager
+![SequenzDM](/docs/arc42/images/SeqDisplayManager.drawio.png)
+
+#### Locationhandler
+![SequenzLh](/docs/arc42/images/SeqLocationhandler.drawio.png)
+
+#### Transportplan
+![SequenzLh](/docs/arc42/images/SeqTransportplan.drawio.png)
+
+### Technical view (middleware)
+https://docs.google.com/document/d/1uywvLFbJhOjsAFXqKdL85siUCp3K1wIFTKaCh0-yDLI/edit?tab=t.0
+https://hawhamburgedu-my.sharepoint.com/:w:/g/personal/wju159_haw-hamburg_de/IQBvktcMB-UMQ7rQt6RzoA4yAfdj4ua0v3uBHI9QqnVXtBw?e=v1WK9q&ovuser=2c6cac8d-ab61-47b3-8209-4df2e46aefbc%2Cwzi922%40haw-hamburg.de&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNTExMzAwMTMxMiIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D
