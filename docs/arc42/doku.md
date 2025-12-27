@@ -54,12 +54,12 @@
 ### Technical context 
 ![Techsicht](/docs/arc42/images/TechnicalContext.png)
 
-| Node            | Communication      | Data format | Description                                                     |
-|-----------------|--------------------|-------------|-----------------------------------------------------------------|
-| JRE             | JDK 24             | --          | Runs the code of our system                                     |
-| Geofax API      | REST over HTTPS    | JSON        | Exchanges coordinated and departure plan with our system        |
-| Nominatim API   | REST over HTTPS    | JSON        | Returns us coordinates                                          |
-| GitHub          | HTTPS              | --          | Version control                                                 |
+| Node          | Communication      | Data format | Description                                                     |
+|---------------|--------------------|-------------|-----------------------------------------------------------------|
+| JRE           | JDK 24             | --          | Runs the code of our system                                     |
+| Geofox API    | REST over HTTPS    | JSON        | Exchanges coordinated and departure plan with our system        |
+| Nominatim API | REST over HTTPS    | JSON        | Returns us coordinates                                          |
+| GitHub        | HTTPS              | --          | Version control                                                 |
 
 ## 4. Solution strategy
 
